@@ -39,8 +39,6 @@ public class PostController {
     public String createPost(@RequestParam (name="title")String title,
                              @RequestParam(name="body") String body,
                              Model model){
-//        model.addAttribute(title);
-//        model.addAttribute(body);
         postDao.save(new Post(title,body));
         return "redirect:/posts";
     }
