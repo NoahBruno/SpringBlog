@@ -1,5 +1,5 @@
 package com.codeup.springblog.models;
-
+import com.codeup.springblog.models.User;
 import javax.persistence.*;
 
 @Entity
@@ -12,23 +12,25 @@ public class Post {
     private String title;
     @Column(nullable = false)
     private String body;
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     public Post() {
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User user) {
         this.title = title;
         this.body = body;
-//        this.user = user;
+        this.user = user;
     }
 
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -46,15 +48,15 @@ public class Post {
         this.body = body;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
 
-//    public void setId(Post byId) {
-//    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setId(Post byId) {
+    }
 }
 
