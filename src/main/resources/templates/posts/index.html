@@ -8,6 +8,10 @@
 <div th:each="post : ${posts}">
     <p th:text="${post.title}"></p>
     <p th:text="${post.body}"></p>
+<!--    <footer class="blockquote-footer"><cite title="Source Title"-->
+<!--                                            th:text="${post.getUser().getEmail()}"></cite></footer>-->
 </div>
+
+
 </body>
 </html>

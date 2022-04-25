@@ -1,15 +1,13 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.EmailService;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import com.codeup.springblog.repositories.PostRepo;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
@@ -17,10 +15,12 @@ public class PostController {
     private UserRepository userDao;
     private User user;
 //    com.codeup.springblog.models.User
+private final EmailService emailService;
 
-    public PostController(PostRepo postDao, UserRepository userDao) {
+    public PostController(PostRepo postDao, UserRepository userDao,EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -37,15 +37,13 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String postForm(Model model){
-        model.addAttribute("posts", new Post());
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam (name="title")String title,
-                             @RequestParam(name="body") String body,
-                             Model model){
-        postDao.save(new Post(title,body, user));
+    public String createPost(@ModelAttribute Post newPost){
+        postDao.save(newPost);
         return "redirect:/posts";
     }
 

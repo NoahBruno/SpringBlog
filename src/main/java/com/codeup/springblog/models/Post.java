@@ -12,9 +12,11 @@ public class Post {
     private String title;
     @Column(nullable = false)
     private String body;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     public Post() {
     }
 
