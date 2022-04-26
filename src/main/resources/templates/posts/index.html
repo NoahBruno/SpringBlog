@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+<nav>
+    <ul>
+        <!-- More links here... -->
+        <li>
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>
 <div th:each="post : ${posts}">
     <p th:text="${post.title}"></p>
     <p th:text="${post.body}"></p>

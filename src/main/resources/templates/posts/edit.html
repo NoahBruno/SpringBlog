@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<form class="container mt-5" th:action="@{/posts/{id}/edit(id = ${post.getId()})}" th:method="post" th:object="${post}">
+    <div class="card-header">
+        Edit A Post
+    </div>
+    <div th:replace="partials/form :: form">
+    </div>
+</form>
+
+</body>
+</html>
